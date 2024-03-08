@@ -1,4 +1,4 @@
-import getCityCoordinates from "../../api/getCityCoordinates";
+import getCityCoordinates from "../../api/getCitySeached";
 import React, { useState, useEffect, useMemo } from "react";
 import GoogleMapReact from 'google-map-react'
 

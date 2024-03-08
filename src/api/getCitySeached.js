@@ -1,7 +1,7 @@
 const GEO_API_KEY = '39634d5d304670572eefa091d5d64e9d'
 
 
-async function getCityCoordinates(cidade) {
+async function getCitySeached(cidade) {
   try {
     const geolocationUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cidade}&limit=5&appid=${GEO_API_KEY}&lang=pt_br`;
     const response = await fetch(geolocationUrl);
@@ -22,4 +22,4 @@ async function getCityCoordinates(cidade) {
   }
 }
 
-module.exports = getCityCoordinates;
+module.exports = getCitySeached;
