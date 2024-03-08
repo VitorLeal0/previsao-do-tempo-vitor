@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+.container_map {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.container_weather{
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.container_map_weather{
+  
+  display: flex;
+  justify-content: center;}
