@@ -1,4 +1,4 @@
-const GEO_API_KEY = '39634d5d304670572eefa091d5d64e9d'
+const GEO_API_KEY= process.env.REACT_APP_GEO_API_KEY
 
 async function getWeatherForecast(lat, lon) {
   try {

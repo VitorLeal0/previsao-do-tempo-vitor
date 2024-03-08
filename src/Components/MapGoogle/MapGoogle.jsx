@@ -2,7 +2,7 @@ import getCityCoordinates from "../../api/getCitySeached";
 import React, { useState, useEffect, useMemo } from "react";
 import GoogleMapReact from 'google-map-react'
 
-const MAP_KEY = "AIzaSyCPYqhsdXgumUpVJBwvNmLQvLQ2l9r9ofg";
+const MAP_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
 
 const MapGoogle = ({ searchedCity }) => {
   const [coordinates, setCoordinates] = useState(null);

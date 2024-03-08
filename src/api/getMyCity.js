@@ -1,4 +1,4 @@
-const MAP_KEY = "AIzaSyCPYqhsdXgumUpVJBwvNmLQvLQ2l9r9ofg";
+const MAP_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
 // ${MAP_KEY}
 
 async function getMyCity() {
