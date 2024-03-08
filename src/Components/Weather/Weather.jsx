@@ -64,6 +64,7 @@ export default function Weather() {
           value={searchedCity}
           onChange={searchEvent => setSearchedCity(searchEvent.target.value)}
         />
+        <div className='buttons'>
         <button type='submit' disabled={loading}>
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} spin />
@@ -71,7 +72,6 @@ export default function Weather() {
             'Pesquisar Cidade'
           )}
         </button>
-        <div>
           <button onClick={myLocalEvent => getWeatherForecastByMyCity(myLocalEvent)}>Previsao para meu local</button>
         </div>
       </form>
