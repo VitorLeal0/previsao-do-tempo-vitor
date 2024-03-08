@@ -72,7 +72,7 @@ export default function Weather() {
             'Pesquisar Cidade'
           )}
         </button>
-          <button onClick={myLocalEvent => getWeatherForecastByMyCity(myLocalEvent)}>Previsao para meu local</button>
+          <button onClick={myLocalEvent => getWeatherForecastByMyCity(myLocalEvent)}>Previsao para Meu Local</button>
         </div>
       </form>
       {city && weather && geo && (
