@@ -4,8 +4,8 @@ async function getWeatherForecast(lat, lon) {
   try {
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${GEO_API_KEY}&units=metric&lang=pt_br`;
     const response = await fetch(weatherUrl);
-    const dadosPrevisao = await response.json();
-    return dadosPrevisao
+    const dataForecast = await response.json();
+    return dataForecast
   } catch (error) {
     console.error('Erro ao obter dados de previsão do tempo:', error.message);
   }

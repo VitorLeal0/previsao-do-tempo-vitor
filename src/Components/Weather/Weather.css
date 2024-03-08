@@ -55,14 +55,30 @@ button:hover {
   padding: 20px;
 }
 
+
+
 .container_map {
+  display: flex;
   height: 400px;
   width: 700px;
+  justify-content: center;
+  padding-top: 40px;
 }
 
-.container_weather {
+.container_weather{
+  padding: 40px;
+  display: flex;
   flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
 }
+
+.container_map_weather{
+  display: flex;
+  justify-content: center;
+}
+  
 
 h1, h2, h3 {
   margin: 0 0 10px 0;
