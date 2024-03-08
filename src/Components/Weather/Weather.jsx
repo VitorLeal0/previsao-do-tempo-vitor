@@ -18,14 +18,16 @@ export default function Weather() {
   const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const getCityCoordinates = require('../../api/getCityCoordinates');
+  const getCitySeached = require('../../api/getCitySeached');
   const getWeatherForecast = require('../../api/getWeatherForecast');
+  const  getMyCity = require ('../../api/getMyCity');
 
-  async function getWeatherForecastByCity(searchedCity) {
+  async function getWeatherForecastByCity(searchEvent) {
     try {
-      setLoading(true); 
-
-      const coordinates = await getCityCoordinates(searchedCity);
+      searchEvent.preventDefault();
+      setLoading(true);
+      setCity(searchedCity);
+      const coordinates = await getCitySeached(searchedCity);
       setGeo(coordinates);
       const data = await getWeatherForecast(coordinates.lat, coordinates.lon);
       setWeather(data);
@@ -36,20 +38,31 @@ export default function Weather() {
     }
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    await getWeatherForecastByCity(searchedCity);
-    setCity(searchedCity);
+
+  async function getWeatherForecastByMyCity(myLocalEvent) {
+    try {
+      myLocalEvent.preventDefault();
+      setLoading(true);
+      const myCityData = await getMyCity()
+      setGeo(myCityData);
+      const data = await getWeatherForecast(myCityData.lat, myCityData.lon);
+      setWeather(data);
+      setCity(myCityData.city)
+    } catch (error) {
+      console.error('Erro ao obter previsão do tempo por cidade:', error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <>
-      <form action='' onSubmit={handleSubmit}>
+      <form action='' onSubmit={getWeatherForecastByCity}>
         <input
           type='text'
           placeholder='Digite o nome da Cidade (Ex: Florianópolis)'
           value={searchedCity}
-          onChange={event => setSearchedCity(event.target.value)}
+          onChange={searchEvent => setSearchedCity(searchEvent.target.value)}
         />
         <button type='submit' disabled={loading}>
           {loading ? (
@@ -58,6 +71,9 @@ export default function Weather() {
             'Pesquisar Cidade'
           )}
         </button>
+        <div>
+          <button onClick={myLocalEvent => getWeatherForecastByMyCity(myLocalEvent)}>Previsao para meu local</button>
+        </div>
       </form>
       {city && weather && geo && (
         <>
