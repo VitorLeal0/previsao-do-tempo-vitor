@@ -1,6 +1,6 @@
-import { useState} from 'react'
+import { useState } from 'react';
 import MapGoogle from '../MapGoogle/MapGoogle';
-import "./Weather.css"
+import "./Weather.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTemperatureHigh,
@@ -8,32 +8,38 @@ import {
   faCloud,
   faTint,
   faWind,
+  faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Weather() {
-  const [searchedCity, setSearchedCity] = useState('')
-  const [weather, setWeather] = useState(null)
-  const [geo,setGeo] = useState(null)
-  const [city, setCity] = useState('')
+  const [searchedCity, setSearchedCity] = useState('');
+  const [weather, setWeather] = useState(null);
+  const [geo, setGeo] = useState(null);
+  const [city, setCity] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const getCityCoordinates = require('../../api/getCityCoordinates');
   const getWeatherForecast = require('../../api/getWeatherForecast');
 
   async function getWeatherForecastByCity(searchedCity) {
     try {
+      setLoading(true); 
+
       const coordinates = await getCityCoordinates(searchedCity);
-      setGeo(coordinates)
+      setGeo(coordinates);
       const data = await getWeatherForecast(coordinates.lat, coordinates.lon);
-      setWeather(data)
+      setWeather(data);
     } catch (error) {
       console.error('Erro ao obter previsão do tempo por cidade:', error.message);
+    } finally {
+      setLoading(false);
     }
   }
 
   async function handleSubmit(event) {
-    event.preventDefault()
-    await getWeatherForecastByCity(searchedCity)
-    setCity(searchedCity)
+    event.preventDefault();
+    await getWeatherForecastByCity(searchedCity);
+    setCity(searchedCity);
   }
 
   return (
@@ -45,12 +51,18 @@ export default function Weather() {
           value={searchedCity}
           onChange={event => setSearchedCity(event.target.value)}
         />
-        <button type='submit'>Pesquisar Cidade</button>
+        <button type='submit' disabled={loading}>
+          {loading ? (
+            <FontAwesomeIcon icon={faSpinner} spin />
+          ) : (
+            'Pesquisar Cidade'
+          )}
+        </button>
       </form>
       {city && weather && geo && (
         <>
-         <h1 className='city'>{geo.city}</h1>
-         <h3 className='state'>{geo.state} - {geo.country}</h3>
+          <h1 className='city'>{geo.city}</h1>
+          <h3 className='state'>{geo.state} - {geo.country}</h3>
           <div className='container_map_weather'>
             <div className='container_map'><MapGoogle searchedCity={city}/></div>
             <div className='container_weather'> 
@@ -88,5 +100,5 @@ export default function Weather() {
         </>
       )}
     </>
-  )
+  );
 }
