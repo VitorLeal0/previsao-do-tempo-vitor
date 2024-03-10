@@ -8,9 +8,7 @@ Após fazer o download deste repositorio,
 
 Crie na raiz do projeto um arquivo .env contendo seus tokens da [openweather](https://home.openweathermap.org/api_keys) e [google maps](https://console.cloud.google.com/google/maps-apis/) seguinto o modelo :
 ```
-// token openweater
 REACT_APP_GEO_API_KEY = sua_chave_openWeather
-// token openweater
 REACT_APP_GOOGLE_MAP_API_KEY = sua_chave_google
 ```
 
