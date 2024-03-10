@@ -18,7 +18,7 @@ Após criar o arquivo, acesse o repositorio do projeto via terminar e execute os
 
 ```bash
 // instalar dependencias necessárias
-npm install ;
+npm install
 
 // rodar o app localmente no endereço http://localhost:3000
 npm start
