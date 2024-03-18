@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import MapGoogle from '../MapGoogle/MapGoogle';
-import "./Weather.css";
+import "./Weather.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTemperatureHigh,
