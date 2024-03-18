@@ -32,14 +32,22 @@ const MapGoogle = ({ searchedCity }) => {
   const defaultProps = useMemo(() => {
     return {
       defaultCenter: { lat: 0, lng: 0 },
-      defaultZoom: 11
+      defaultZoom: 11,
+      style: {
+        width: '100%',
+        height: '100%',
+        margin: '0px',
+        padding: '0px',
+        position: 'relative',
+        borderRadius: "30px" }
     };
   }, []);
 
   return (
-    <div style={{ height: '400px', width: '700px' }}>
+    <div style={{ height: '400px', width: '700px',borderRadius: "30px" }}>
       {coordinates && (
         <GoogleMapReact
+          
           bootstrapURLKeys={{ key: MAP_KEY }}
           center={coordinates}
           {...defaultProps}
